@@ -1,7 +1,33 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<main>
+  <section class="add-form">
+    <form>
+      <input type="text" placeholder="title" />
+      <input type="text" placeholder="description" />
+      <input type="text" placeholder="tagline" />
+      <button class="btn btn-primary">Add idea</button>
+    </form>
+  </section>
+  <hr />
+  <section class="main-content">
+    <section class="sort-buttons">
+      <aside>sort by:</aside>
+      <button class="btn btn-dark">title</button>
+      <button class="btn btn-dark">Date</button>
+    </section>
+    <ul class="ideas">
+      <li>
+        <header>
+          <h3>vr game</h3>
+          <button class="btn btn-link">x</button>
+        </header>
+        <main>
+          <p>a cool game based on som VR buzzwords</p>
+          <p>a game to immerse yourself in some ML</p>
+        </main>
+        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+      </li>
+    </ul>
+  </section>
+</main>
