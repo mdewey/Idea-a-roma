@@ -1,12 +1,20 @@
 ﻿@page "/"
+@using Models
 
 <main>
   <section class="add-form">
     <form>
-      <input type="text" placeholder="title" />
-      <input type="text" placeholder="description" />
-      <input type="text" placeholder="tagline" />
-      <button class="btn btn-primary">Add idea</button>
+      <EditForm model="@NewIdea" OnValidSubmit="@AddNewIdea">
+
+          <InputText id="title" @bind-Value="NewIdea.Title" placeholder="title"/>
+          <InputText id="description" @bind-Value="NewIdea.Description" placeholder="description"/>
+          <InputText id="tagline" @bind-Value="NewIdea.TagLine" placeholder="tagline"/>
+
+          <button class="btn btn-primary" type="submit">Add idea</button>
+
+          <ValidationSummary />
+          <DataAnnotationsValidator />
+      </EditForm>
     </form>
   </section>
   <hr />
@@ -17,17 +25,34 @@
       <button class="btn btn-dark">Date</button>
     </section>
     <ul class="ideas">
+      @foreach(var idea in Ideas)
+      {
       <li>
         <header>
-          <h3>vr game</h3>
+          <h3>@idea.Title</h3>
           <button class="btn btn-link">x</button>
         </header>
         <main>
-          <p>a cool game based on som VR buzzwords</p>
-          <p>a game to immerse yourself in some ML</p>
+          <p>@idea.Description</p>
+          <p>@idea.TagLine</p>
         </main>
-        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+        <footer>ideated on <time>@idea.DateCreated.ToLongDateString()</time></footer>
       </li>
+      }
     </ul>
   </section>
 </main>
+
+
+@code{
+  private Idea NewIdea = new Idea();
+  private List<Idea> Ideas { get; set; } = new List<Idea>();
+
+  private void AddNewIdea()
+  {
+    Ideas.Add(NewIdea);
+    NewIdea = new Idea();
+  }
+
+    
+}
