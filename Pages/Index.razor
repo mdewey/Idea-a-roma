@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Models
-@using System.Linq
+@inject HttpClient client
+
 <main>
   <section class="add-form">
     <form>
@@ -47,18 +48,26 @@
 @code{
   private Idea NewIdea = new Idea();
   private List<Idea> Ideas { get; set; } = new List<Idea>();
+  private readonly string API_URL = "https://sdg-idea-o-rama.herokuapp.com/api/Idea";
 
-  private void DeleteIdea(Idea idea)
+  protected override async Task OnInitAsync(){
+    Ideas = await client.GetJsonAsync<List<Idea>>(API_URL);
+  }
+
+  private async void DeleteIdea(Idea idea)
   {
     Ideas.Remove(idea);
+    await client.DeleteAsync($"{API_URL}/{idea.Id}");
     StateHasChanged();
     
   }
 
-  private void AddNewIdea()
+  private async void AddNewIdea()
   {
+    NewIdea = await client.PostJsonAsync<Idea>(API_URL, NewIdea);
     Ideas.Add(NewIdea);
     NewIdea = new Idea();
+    StateHasChanged();
   }
 
   private void SortByTitle(){
