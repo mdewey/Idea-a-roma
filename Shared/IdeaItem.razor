@@ -1,0 +1,20 @@
+ @using Models
+ 
+ <li>
+  <header>
+    <h3>@idea.Title</h3>
+    <button class="btn btn-link" onclick="@(() => DeleteIdea(idea))">x</button>
+  </header>
+  <main>
+    <p>@idea.Description</p>
+    <p>@idea.TagLine</p>
+  </main>
+  <footer>ideated on <time>@idea.DateCreated.ToShortDateString()</time></footer>
+</li>
+
+@code {
+  [Parameter]
+  private Idea idea {get;set;}
+  [Parameter]
+  private Action<Idea> DeleteIdea{get;set;}
+}
