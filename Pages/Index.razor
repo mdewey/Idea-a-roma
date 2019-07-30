@@ -3,45 +3,9 @@
 @inject HttpClient client
 
 <main>
-  <section class="add-form">
-    <form>
-      <EditForm model="@NewIdea" OnValidSubmit="@AddNewIdea">
-
-          <InputText id="title" @bind-Value="NewIdea.Title" placeholder="title"/>
-          <InputText id="description" @bind-Value="NewIdea.Description" placeholder="description"/>
-          <InputText id="tagline" @bind-Value="NewIdea.TagLine" placeholder="tagline"/>
-
-          <button class="btn btn-primary" type="submit">Add idea</button>
-
-          <ValidationSummary />
-          <DataAnnotationsValidator />
-      </EditForm>
-    </form>
-  </section>
+  <AddIdea NewIdea="@NewIdea" AddNewIdea="@AddNewIdea"/>
   <hr />
-  <section class="main-content">
-    <section class="sort-buttons">
-      <aside>sort by:</aside>
-      <button class="btn btn-dark" @onclick="@SortByTitle">title</button>
-      <button class="btn btn-dark" @onclick="@SortByDate">Date</button>
-    </section>
-    <ul class="ideas">
-      @foreach(var idea in Ideas)
-      {
-      <li>
-        <header>
-          <h3>@idea.Title</h3>
-          <button class="btn btn-link" onclick="@(() => DeleteIdea(idea))">x</button>
-        </header>
-        <main>
-          <p>@idea.Description</p>
-          <p>@idea.TagLine</p>
-        </main>
-        <footer>ideated on <time>@idea.DateCreated.ToShortDateString()</time></footer>
-      </li>
-      }
-    </ul>
-  </section>
+  <IdeaList Ideas="@Ideas" DeleteIdea="@DeleteIdea"/>
 </main>
 
 
@@ -70,12 +34,7 @@
     StateHasChanged();
   }
 
-  private void SortByTitle(){
-    Ideas = Ideas.OrderBy(o => o.Title).ToList();
-  }
-  private void SortByDate(){
-    Ideas = Ideas.OrderBy(o => o.DateCreated).ToList();
-  }
+ 
 
     
 }

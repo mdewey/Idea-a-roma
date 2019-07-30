@@ -1,0 +1,39 @@
+@using Models
+
+<section class="main-content">
+    <section class="sort-buttons">
+      <aside>sort by:</aside>
+      <button class="btn btn-dark" @onclick="@SortByTitle">title</button>
+      <button class="btn btn-dark" @onclick="@SortByDate">Date</button>
+    </section>
+    <ul class="ideas">
+      @foreach(var idea in Ideas)
+      {
+      <li>
+        <header>
+          <h3>@idea.Title</h3>
+          <button class="btn btn-link" onclick="@(() => DeleteIdea(idea))">x</button>
+        </header>
+        <main>
+          <p>@idea.Description</p>
+          <p>@idea.TagLine</p>
+        </main>
+        <footer>ideated on <time>@idea.DateCreated.ToShortDateString()</time></footer>
+      </li>
+      }
+    </ul>
+  </section>
+
+@code{
+  [Parameter]
+  private List<Idea> Ideas { get; set; }
+  [Parameter]
+  private Action<Idea> DeleteIdea{get;set;}
+
+  private void SortByTitle(){
+    Ideas = Ideas.OrderBy(o => o.Title).ToList();
+  }
+  private void SortByDate(){
+    Ideas = Ideas.OrderBy(o => o.DateCreated).ToList();
+  }
+}

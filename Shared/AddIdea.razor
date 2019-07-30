@@ -1,0 +1,29 @@
+@using Models 
+ 
+ <section class="add-form">
+    <form>
+      <EditForm model="@NewIdea" OnValidSubmit="@AddNewIdea">
+
+          <InputText id="title" @bind-Value="NewIdea.Title" placeholder="title"/>
+          <InputText id="description" @bind-Value="NewIdea.Description" placeholder="description"/>
+          <InputText id="tagline" @bind-Value="NewIdea.TagLine" placeholder="tagline"/>
+
+          <button class="btn btn-primary" type="submit">Add idea</button>
+
+          <ValidationSummary />
+          <DataAnnotationsValidator />
+      </EditForm>
+    </form>
+  </section>
+
+  @code{
+    [Parameter]
+    private Idea NewIdea { get; set; } 
+
+    [Parameter]
+    private EventCallback AddNewIdea {get;set;}
+
+
+
+
+  }
