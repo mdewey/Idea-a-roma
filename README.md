@@ -41,6 +41,61 @@ To follow along, create a new template and replace the contents of `Index.razor`
         </main>
         <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
       </li>
+      <li>
+        <header>
+          <h3>vr game</h3>
+          <button class="btn btn-link">x</button>
+        </header>
+        <main>
+          <p>a cool game based on som VR buzzwords</p>
+          <p>a game to immerse yourself in some ML</p>
+        </main>
+        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+      </li>
+      <li>
+        <header>
+          <h3>vr game</h3>
+          <button class="btn btn-link">x</button>
+        </header>
+        <main>
+          <p>a cool game based on som VR buzzwords</p>
+          <p>a game to immerse yourself in some ML</p>
+        </main>
+        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+      </li>
+      <li>
+        <header>
+          <h3>vr game</h3>
+          <button class="btn btn-link">x</button>
+        </header>
+        <main>
+          <p>a cool game based on som VR buzzwords</p>
+          <p>a game to immerse yourself in some ML</p>
+        </main>
+        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+      </li>
+      <li>
+        <header>
+          <h3>vr game</h3>
+          <button class="btn btn-link">x</button>
+        </header>
+        <main>
+          <p>a cool game based on som VR buzzwords</p>
+          <p>a game to immerse yourself in some ML</p>
+        </main>
+        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+      </li>
+      <li>
+        <header>
+          <h3>vr game</h3>
+          <button class="btn btn-link">x</button>
+        </header>
+        <main>
+          <p>a cool game based on som VR buzzwords</p>
+          <p>a game to immerse yourself in some ML</p>
+        </main>
+        <footer>ideated on <time>July 31st 2019, 2:13 PM</time></footer>
+      </li>
     </ul>
   </section>
 </main>
@@ -131,4 +186,19 @@ main {
 ul {
   list-style: none;
 }
+```
+
+Update the `MainLayout.razor` component to have this code
+
+```
+@inherits LayoutComponentBase
+
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Ideas that I will totally get to some day</span>
+</nav>
+<div class="main">
+
+        @Body
+
+</div>
 ```
